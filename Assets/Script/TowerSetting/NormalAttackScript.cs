@@ -26,7 +26,7 @@ public class NormalAttackScript : MonoBehaviour
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
         nowenemyCount = GameObject.Find("Controller").GetComponent<EnemySpawn>().nowEnemyCount; // 현재 적 숫자 받아오기
         Distance(); // 공격함수 실행
-        Destroy(gameObject,5.0f);
+        Destroy(gameObject,3.0f); //3초가 지나면 자동으로 오브젝트 삭제
     }
 
     void Distance() //사거리 내의 오브젝트를 찾고 공격

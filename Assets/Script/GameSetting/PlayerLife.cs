@@ -1,21 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    public int playerLife = 3; // 플레이어 목숨
+    public int playerLife; // 플레이어 목숨
+    public GameObject lifeUI;
+
+    private void Start()
+    {
+        playerLife = 3;
+    }
 
     void Update()
     {
-        if(playerLife == 0)
+        GameObject.Find("Life").GetComponent<Text>().text = "Life : " + playerLife; // UI에 목숨표시
+        if (playerLife == 0)
         {
-            Debug.Log("Game Over");
+            lifeUI.SetActive(true);  
         }
     }
-    
+
+        
     private void OnTriggerEnter(Collider other) //충돌시 적 삭제,목숨감소
-    {        
+    {
+        other.gameObject.SendMessage("Die");
         playerLife--;
     }
 }

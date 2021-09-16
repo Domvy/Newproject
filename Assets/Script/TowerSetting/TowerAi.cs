@@ -8,6 +8,7 @@ public class TowerAi : MonoBehaviour
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
     public int nowenemyCount = 0; // 적 오브젝트 총 생산값
     public Transform enemyPos; // 적 오브젝트 위치값
+    public GameObject target = null; // 타겟 설정용
 
     public GameObject normalAttack; // 일반공격   
 
@@ -34,7 +35,7 @@ public class TowerAi : MonoBehaviour
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
         nowenemyCount = GameObject.Find("Controller").GetComponent<EnemySpawn>().nowEnemyCount; // 현재 적 숫자 받아오기 
         Targeting();
-        if (canattack == true)
+        if (target != null)
         {
             if (timer > waitingtime) // 공격 딜레이 생성
             {
@@ -45,13 +46,17 @@ public class TowerAi : MonoBehaviour
     }
 
     public void Targeting() // 적 타겟 검사
-    {
+    {        
         for (int i = 0; i < nowenemyCount; i++)
         {
             enemyPos = enemySpawnList[i].transform;
             distance = (enemyPos.position - transform.position).magnitude;
-        }
-        CanAttack();
+            CanAttack();
+            if (canattack == true)
+            {
+                target = enemySpawnList[i]; //타겟 설정
+            }
+        }        
     }
 
     public bool CanAttack() // 공격 가능여부
