@@ -115,7 +115,7 @@ MonoBehaviour:
   target: {fileID: 0}
   normalAttack: {fileID: 6457927845631336357, guid: 9f5289642fd5e294ba88911d28ade5a3, type: 3}
   towerRangeX: 20
-  waitingtime: 5
+  waitingtime: 0
   canattack: 0
 --- !u!1 &3116616135003454891
 GameObject:

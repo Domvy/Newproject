@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerAttackScript : MonoBehaviour
 {
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
-    public float bulletSpeed = 50; // 발사체 속도
+    public float bulletSpeed = 30; // 발사체 속도
 
     private float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
@@ -24,7 +24,7 @@ public class PowerAttackScript : MonoBehaviour
         towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산 
         
     }
-    // Update is called once per frame
+
     void Update()
     {
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴

@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1843543523011112624, guid: 7cafa0e561c008c42bd790bf744afee1, type: 3}
-  enemyCount: 20
+  enemyCount: 10
   spawnCount: 0.1
   spawnPoint: {fileID: 1614451318}
   enemyList: []

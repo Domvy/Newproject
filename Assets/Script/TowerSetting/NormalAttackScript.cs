@@ -24,7 +24,6 @@ public class NormalAttackScript : MonoBehaviour
        
     }
 
-    // Update is called once per frame
     void Update()
     {
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
@@ -53,7 +52,6 @@ public class NormalAttackScript : MonoBehaviour
     public void OnTriggerEnter(Collider other) // 충돌시 데미지 부여
     {
         Destroy(gameObject);
-        //other.gameObject.SendMessage("Hit", NormalDamage);
         other.gameObject.GetComponent<NormalEnemy>().Hit(NormalDamage, ArmorPearce);
     }
 }

@@ -17,7 +17,7 @@ public class TowerAi : MonoBehaviour
     private float distance; // 타워와 적 사이의 거리 
 
     float timer; // 시간 타이머
-    public int waitingtime; // 함수 재호출 대기시간(공격 딜레이)
+    public float waitingtime; // 함수 재호출 대기시간(공격 딜레이)
 
     public bool canattack;
 
@@ -76,6 +76,5 @@ public class TowerAi : MonoBehaviour
     {
         Instantiate(normalAttack, transform.position, transform.rotation);
         Debug.Log("Attack!");
-
     }
 }
