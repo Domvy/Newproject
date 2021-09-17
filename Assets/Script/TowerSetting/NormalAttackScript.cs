@@ -12,7 +12,8 @@ public class NormalAttackScript : MonoBehaviour
 
     public int nowenemyCount = 0;// 총 생산횟수
 
-    private int NormalDamage = 10; // 공격력
+    public int NormalDamage = 10; // 공격력
+    public int ArmorPearce = 0; // 방어무시 공격력
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class NormalAttackScript : MonoBehaviour
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
         nowenemyCount = GameObject.Find("Controller").GetComponent<EnemySpawn>().nowEnemyCount; // 현재 적 숫자 받아오기
         Distance(); // 공격함수 실행
-        Destroy(gameObject,3.0f); //3초가 지나면 자동으로 오브젝트 삭제
+        Destroy(gameObject,2.0f); //n초가 지나면 자동으로 오브젝트 삭제
     }
 
     void Distance() //사거리 내의 오브젝트를 찾고 공격
@@ -43,6 +44,7 @@ public class NormalAttackScript : MonoBehaviour
     public void OnTriggerEnter(Collider other) // 충돌시 데미지 부여
     {
         Destroy(gameObject);
-        other.gameObject.SendMessage("Hit", NormalDamage);     
+        //other.gameObject.SendMessage("Hit", NormalDamage);
+        other.gameObject.GetComponent<NormalEnemy>().Hit(NormalDamage, ArmorPearce);
     }
 }

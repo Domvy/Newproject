@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameStartScene : MonoBehaviour
 {
+    public void Restart() // 게임 재시작
+    {
+        SceneManager.LoadScene(0);
+    }
     public void StartGame() // 게임시작
     {
         SceneManager.LoadScene(1);

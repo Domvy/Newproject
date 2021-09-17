@@ -5,12 +5,14 @@ using UnityEngine;
 public class MoveKey : MonoBehaviour
 {
     public float cameraSpeed = 100f;
-    public float cameraZoomSpeed = 10f;
+    public float cameraZoomSpeed = 100f;
     public Camera mainCamera;
+    [Range(1,50)]
+    private float distance;
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
+        if(Input.GetKey(KeyCode.A)) // 카메라 이동
         {
             transform.Translate(Vector3.left * cameraSpeed * Time.deltaTime);
         }
@@ -26,20 +28,20 @@ public class MoveKey : MonoBehaviour
         {
             transform.Translate(new Vector3(0, 0, -1) * cameraSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.transform.Rotate(Vector3.down * cameraSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            transform.transform.Rotate(Vector3.up * cameraSpeed * Time.deltaTime);
-        }
-        Zoom();
+        //if (Input.GetKey(KeyCode.Q)) // 카메라 회전
+        //{
+        //    transform.transform.Rotate(Vector3.down * cameraSpeed * Time.deltaTime);
+        //}
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    transform.transform.Rotate(Vector3.up * cameraSpeed * Time.deltaTime);
+        //}
+        Zoom(); //확대
     }
 
     private void Zoom()
     {
-        float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * cameraZoomSpeed;
+        distance = Input.GetAxis("Mouse ScrollWheel") * -1 * cameraZoomSpeed;        
         if (distance != 0)
         {
             mainCamera.fieldOfView += distance;

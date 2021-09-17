@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerAi : MonoBehaviour
+public class PowerTowerAI : MonoBehaviour
 {
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
     public int nowenemyCount = 0; // 적 오브젝트 총 생산값
@@ -46,7 +45,7 @@ public class TowerAi : MonoBehaviour
     }
 
     public void Targeting() // 적 타겟 검사
-    {        
+    {
         for (int i = 0; i < nowenemyCount; i++)
         {
             enemyPos = enemySpawnList[i].transform;
@@ -56,7 +55,7 @@ public class TowerAi : MonoBehaviour
             {
                 target = enemySpawnList[i]; //타겟 설정
             }
-        }        
+        }
     }
 
     public bool CanAttack() // 공격 가능여부
@@ -74,7 +73,7 @@ public class TowerAi : MonoBehaviour
 
     public void NormalAttack() // 일반 공격 실행
     {
-            Instantiate(normalAttack, transform.position, transform.rotation);
-            Debug.Log("Attack!");
+        Instantiate(normalAttack, transform.position, transform.rotation);
+        Debug.Log("Attack!");
     }
 }

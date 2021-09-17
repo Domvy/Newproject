@@ -25,8 +25,8 @@ public class NormalEnemy : MonoBehaviour
         GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject);
     }
 
-    public void Hit(int Damage)
+    public void Hit(int Damage, int ArmorPearce)
     {
-        HP -= (Damage - Armor);
+        HP -= (Damage - Armor) + ArmorPearce;
     }
 }
