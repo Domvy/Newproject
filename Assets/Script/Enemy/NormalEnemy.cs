@@ -29,4 +29,8 @@ public class NormalEnemy : MonoBehaviour
     {
         HP -= (Damage - Armor) + ArmorPearce;
     }
+    public void Hit(int Damage)
+    {
+        HP -= Damage - Armor;
+    }
 }

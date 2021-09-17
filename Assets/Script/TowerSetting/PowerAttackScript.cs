@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalAttackScript : MonoBehaviour
+public class PowerAttackScript : MonoBehaviour
 {
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
     public float bulletSpeed = 50; // 발사체 속도
@@ -10,20 +10,20 @@ public class NormalAttackScript : MonoBehaviour
     private float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
     private GameObject target; //공격 타겟
+    private Transform targetposition;
 
     public int nowenemyCount = 0;// 총 생산횟수
 
-    public int NormalDamage = 10; // 공격력
+    public int NormalDamage = 20; // 공격력
     public int ArmorPearce = 0; // 방어무시 공격력
 
     void Start()
     {
         target = null;
         enemySpawnList = new List<GameObject>(); // 배열 선언  
-        towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산    
-       
+        towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산 
+        
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -33,7 +33,6 @@ public class NormalAttackScript : MonoBehaviour
         {
             Distance(); // 공격함수 실행
         }
-        //공격
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, bulletSpeed * Time.deltaTime);
         Destroy(gameObject, 2.0f); //n초가 지나면 자동으로 오브젝트 삭제
     }
@@ -47,13 +46,19 @@ public class NormalAttackScript : MonoBehaviour
                 target = enemySpawnList[i];
                 break;
             }
-        }        
+        }
     }
 
     public void OnTriggerEnter(Collider other) // 충돌시 데미지 부여
     {
+        Collider[] Splash = Physics.OverlapSphere(transform.position, 5.0f); // 범위 지정
+        foreach(Collider hit in Splash)
+        {
+            if(hit.gameObject.tag == "Enemy")
+            {
+                hit.gameObject.GetComponent<NormalEnemy>().Hit(NormalDamage, ArmorPearce);
+            }
+        }
         Destroy(gameObject);
-        //other.gameObject.SendMessage("Hit", NormalDamage);
-        other.gameObject.GetComponent<NormalEnemy>().Hit(NormalDamage, ArmorPearce);
     }
 }

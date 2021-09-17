@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1484859570464573016}
   - component: {fileID: 1484859570464573017}
   - component: {fileID: 1484859570464573014}
-  - component: {fileID: 8421823536234159758}
+  - component: {fileID: 6795030202015593752}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -97,7 +97,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8421823536234159758
+--- !u!114 &6795030202015593752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1484859570464573012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7596e6f1fe73d42b1576f54a2a206d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c46b9bede435214aafb3e41783a7ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnList: []

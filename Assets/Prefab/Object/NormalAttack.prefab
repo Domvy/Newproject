@@ -111,6 +111,10 @@ MonoBehaviour:
   enemySpawnList: []
   bulletSpeed: 30
   towerRangeX: 20
+  lifeTower: {fileID: 8339635633454528946, guid: 8e39075b7455147478585178b58326fa, type: 3}
+  lifetowerdistance: 0
+  positiondistance: 0
+  positiondistance2: 0
   nowenemyCount: 0
   NormalDamage: 5
   ArmorPearce: 0
