@@ -26,7 +26,8 @@ public class TowerAi : MonoBehaviour
         timer = 5.0f;
         waitingtime = 5;
         enemySpawnList = new List<GameObject>(); // 배열 선언
-        towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산           
+        towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산      
+        target = null;
     }
 
     private void Update()
@@ -34,15 +35,19 @@ public class TowerAi : MonoBehaviour
         timer += Time.deltaTime;
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
         nowenemyCount = GameObject.Find("Controller").GetComponent<EnemySpawn>().nowEnemyCount; // 현재 적 숫자 받아오기 
-        Targeting();
+        if(target == null)
+        {
+            Targeting();
+        }
+        transform.LookAt(target.transform);
         if (target != null)
         {
             if (timer > waitingtime) // 공격 딜레이 생성
-            {
+            {                
                 NormalAttack();
                 timer = 0f;
             }
-        }
+        }        
     }
 
     public void Targeting() // 적 타겟 검사

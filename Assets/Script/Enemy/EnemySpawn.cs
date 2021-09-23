@@ -6,25 +6,39 @@ public class EnemySpawn : MonoBehaviour
 {
     [Header("적 생산 설정")]
     public GameObject Enemy; // 생산할 적 오브젝트
+    public GameObject BigEnemy;
+    public GameObject SpeedEnemy;
+
     public int enemyCount = 10; // 총 생산 숫자
     public float spawnCount = 5f; // 생산 중간 딜레이
     public Transform spawnPoint; // 생산 위치
     public List<GameObject> enemyList; // 생산된 적 리스트
     private GameObject clone = null; // 생산된 적 값 보관
     public int nowEnemyCount = 0; // 현재 생산되어 있는 적 숫자
+    private int totalSpawn = 0;
+
+    public int roundCount; // 현재 라운드 숫자
 
 
     void Start()
     {
+        roundCount = GameObject.Find("Controller").GetComponent<GameStartScene>().roundCount;
+        enemyCount = enemyCount * roundCount;
         enemyList = new List<GameObject>();
         StartCoroutine(SpawnEnemy());
     }
 
     void Update()
     {
+        roundCount = GameObject.Find("Controller").GetComponent<GameStartScene>().roundCount;
+
         if (enemyCount == 0)
         {
             StopCoroutine(SpawnEnemy());
+        }        
+        if(enemyCount == 0 && nowEnemyCount == 0)
+        {
+            GameObject.Find("Controller").GetComponent<GameStartScene>().RoundComplete++;
         }
     }
     // 적 생성 스크립트
@@ -36,9 +50,24 @@ public class EnemySpawn : MonoBehaviour
             {
                 clone = null;
             }
-            clone = Instantiate(Enemy, spawnPoint.position, spawnPoint.rotation); // 적 생성            
+
+            if(roundCount >= 2 && totalSpawn % 5 == 0)
+            {
+                clone = Instantiate(SpeedEnemy, spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("SpeedEnemySpawn!");
+            }
+            else if (roundCount >= 3 && totalSpawn % 10 == 0)
+            {
+                clone = Instantiate(BigEnemy, spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("BigEnemySpawn!");
+            }
+            else
+            {
+                clone = Instantiate(Enemy, spawnPoint.position, spawnPoint.rotation); // 적 생성 
+            }
             enemyList.Add(clone); // 생성된 값 배열추가
             nowEnemyCount++; //생산되어있는 적 숫자 증가
+            totalSpawn++;
             yield return new WaitForSeconds(spawnCount);
             enemyCount--; // 총 생성 카운트 감소
             Debug.Log("EnemySpawn!");            
@@ -49,6 +78,6 @@ public class EnemySpawn : MonoBehaviour
     {
         enemyList.Remove(enemy); // 리스트 삭제
         Destroy(enemy.gameObject); // 오브젝트 삭제
-        nowEnemyCount--; // 생산되어있는 적 숫자 감소
+        nowEnemyCount--; // 생산되어있는 적 숫자 감소        
     }
 }

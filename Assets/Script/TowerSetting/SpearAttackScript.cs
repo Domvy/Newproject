@@ -8,7 +8,7 @@ public class SpearAttackScript : MonoBehaviour
 
     private float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
-    private GameObject target; //공격 타겟
+    private GameObject target; // 공격 타겟
 
     public int nowenemyCount = 0;// 총 생산횟수
 
@@ -64,7 +64,12 @@ public class SpearAttackScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit, layermask))
         {
+            if(hit.collider.gameObject.tag == "Enemy")
             hit.collider.gameObject.GetComponent<NormalEnemy>().Hit(NormalDamage, ArmorPearce);
+            else if (hit.collider.gameObject.tag == "SpeedEnemy")
+                hit.collider.gameObject.GetComponent<SpeedEnemy>().Hit(NormalDamage, ArmorPearce);
+            else if (hit.collider.gameObject.tag == "BigEnemy")
+                hit.collider.gameObject.GetComponent<BigEnemy>().Hit(NormalDamage, ArmorPearce);
         }
     }
 }

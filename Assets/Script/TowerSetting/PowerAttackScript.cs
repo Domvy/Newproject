@@ -34,7 +34,7 @@ public class PowerAttackScript : MonoBehaviour
             Distance(); // 공격함수 실행
         }
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, bulletSpeed * Time.deltaTime);
-        Destroy(gameObject, 2.0f); //n초가 지나면 자동으로 오브젝트 삭제
+        Destroy(gameObject, 1.0f); //n초가 지나면 자동으로 오브젝트 삭제
     }
 
     void Distance() //사거리 내의 오브젝트를 찾고 타겟설정
@@ -51,6 +51,7 @@ public class PowerAttackScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) // 충돌시 데미지 부여
     {
+        Destroy(gameObject);
         Collider[] Splash = Physics.OverlapSphere(transform.position, 5.0f); // 범위 지정
         foreach(Collider hit in Splash)
         {
@@ -58,7 +59,14 @@ public class PowerAttackScript : MonoBehaviour
             {
                 hit.gameObject.GetComponent<NormalEnemy>().Hit(NormalDamage, ArmorPearce);
             }
+            else if (hit.gameObject.tag == "SpeedEnemy")
+            {
+                hit.gameObject.GetComponent<SpeedEnemy>().Hit(NormalDamage, ArmorPearce);
+            }
+            else if (hit.gameObject.tag == "BigEnemy")
+            {
+                hit.gameObject.GetComponent<BigEnemy>().Hit(NormalDamage, ArmorPearce);
+            }
         }
-        Destroy(gameObject);
     }
 }

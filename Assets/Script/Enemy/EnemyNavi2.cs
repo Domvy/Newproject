@@ -5,26 +5,27 @@ using UnityEngine;
 public class EnemyNavi2 : MonoBehaviour
 {
     public float enemySpeed = 10; // 적 기본 속도
-    public int enemyType = 1; // 적 유닛 타입
+    public float enemyType = 0; // 적 유닛 타입
     Transform[] WayPoint; // 웨이포인트 배열
     public int checkpoint = 1; // 웨이포인트 첫 목표
 
 
     void Start()
-    {
-        enemySpeed = 10 * enemyType;
+    {        
         WayPoint = GameObject.Find("WayPoint").GetComponentsInChildren<Transform>();
         transform.position = WayPoint[checkpoint].transform.position;
     }
 
     void Update()
     {
+        enemySpeed = 10 * enemyType;
         EnemyMove();
     }
     // 적 이동 함수
     void EnemyMove()
     {
         transform.position = Vector3.MoveTowards(transform.position, WayPoint[checkpoint].transform.position, enemySpeed * Time.deltaTime);
+        transform.LookAt(WayPoint[checkpoint]);
         if(transform.position == WayPoint[checkpoint].transform.position )
         {
             checkpoint++;
@@ -40,6 +41,14 @@ public class EnemyNavi2 : MonoBehaviour
         if(enemytype == "Normal")
         {
             enemyType = 1;
+        }
+        if (enemytype == "Big")
+        {
+            enemyType = 0.5f;
+        }
+        if (enemytype == "Speed")
+        {
+            enemyType = 2;
         }
     }
 }
