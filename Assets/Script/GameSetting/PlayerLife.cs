@@ -5,18 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    public int playerLife; // 敲饭捞绢 格见
     public GameObject lifeUI;
 
     private void Start()
     {
-        playerLife = 3;
+        
     }
 
     void Update()
     {
-        GameObject.Find("Life").GetComponent<Text>().text = "Life : " + playerLife; // UI俊 格见钎矫
-        if (playerLife == 0)
+        GameObject.Find("Life").GetComponent<Text>().text = "Life : " + BasicSetting.instance.playerLife; // UI俊 格见钎矫
+        if (BasicSetting.instance.playerLife == 0)
         {
             lifeUI.SetActive(true);  
         }
@@ -26,6 +25,6 @@ public class PlayerLife : MonoBehaviour
     private void OnTriggerEnter(Collider other) //面倒矫 利 昏力,格见皑家
     {
         other.gameObject.SendMessage("Die");
-        playerLife--;
+        BasicSetting.instance.playerLife--;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class NormalAttackScript : MonoBehaviour
 {
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
-    public float bulletSpeed = 50; // 발사체 속도
+    private float bulletSpeed = 50; // 발사체 속도
 
     private float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
@@ -13,8 +13,8 @@ public class NormalAttackScript : MonoBehaviour
 
     public int nowenemyCount = 0;// 총 생산횟수
 
-    public int NormalDamage = 10; // 공격력
-    public int ArmorPearce = 0; // 방어무시 공격력
+    private int NormalDamage = 10; // 공격력
+    private int ArmorPearce = 0; // 방어무시 공격력
 
     void Start()
     {

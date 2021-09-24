@@ -38,7 +38,7 @@ public class EnemySpawn : MonoBehaviour
         }        
         if(enemyCount == 0 && nowEnemyCount == 0)
         {
-            GameObject.Find("Controller").GetComponent<GameStartScene>().RoundComplete++;
+            GameObject.Find("Controller").GetComponent<GameStartScene>().RoundComplete = 1;
         }
     }
     // 利 积己 胶农赋飘
@@ -56,7 +56,7 @@ public class EnemySpawn : MonoBehaviour
                 clone = Instantiate(SpeedEnemy, spawnPoint.position, spawnPoint.rotation);
                 Debug.Log("SpeedEnemySpawn!");
             }
-            else if (roundCount >= 3 && totalSpawn % 10 == 0)
+            else if (roundCount >= 3 && totalSpawn % 11 == 0)
             {
                 clone = Instantiate(BigEnemy, spawnPoint.position, spawnPoint.rotation);
                 Debug.Log("BigEnemySpawn!");

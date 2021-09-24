@@ -14,6 +14,9 @@ public class GameStartScene : MonoBehaviour
 
     public void Restart() // 게임 재시작
     {
+        BasicSetting.instance.playerLife = 3; // 플레이어 목숨 초기화
+        BasicSetting.instance.PlayerMoney = 100; // 플레이어 돈 초기화
+        BasicSetting.instance.timer = 0.0f;
         SceneManager.LoadScene(0);
     }
     public void StartGame() // 게임시작
@@ -36,7 +39,7 @@ public class GameStartScene : MonoBehaviour
 
     public void StartNextRound()
     {
-        RoundComplete--;
+        RoundComplete = 0;
         roundCount++;
         Round.text = "Round : " + roundCount;
         GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyCount = 10 * roundCount;

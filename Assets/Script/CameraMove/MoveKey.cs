@@ -10,9 +10,12 @@ public class MoveKey : MonoBehaviour
     [Range(1,50)]
     private float distance;
 
+    float x;
+    float z;
+
     void Update()
     {
-        if(Input.GetKey(KeyCode.A)) // 카메라 이동
+        if (Input.GetKey(KeyCode.A)) // 카메라 이동
         {
             transform.Translate(Vector3.left * cameraSpeed * Time.deltaTime);
         }
@@ -36,6 +39,11 @@ public class MoveKey : MonoBehaviour
         //{
         //    transform.transform.Rotate(Vector3.up * cameraSpeed * Time.deltaTime);
         //}
+        float x = Mathf.Clamp(transform.position.x, -140, 60);
+        float z = Mathf.Clamp(transform.position.z, -30, 60);
+        transform.position = new Vector3(x, transform.position.y, z);
+        
+
         Zoom(); //확대
     }
 

@@ -12,15 +12,15 @@ public class SpearAttackScript : MonoBehaviour
 
     public int nowenemyCount = 0;// 총 생산횟수
 
-    public int NormalDamage = 0; // 공격력
-    public int ArmorPearce = 1; // 방어무시 공격력
+    private int NormalDamage = 0; // 공격력
+    private int ArmorPearce = 1; // 방어무시 공격력
 
     private float timer = 0.0f;
     private float waitingTime = 5;
     private float attackTimer = 0.0f;
     private float attackDelay = 0.1f;
 
-    LineRenderer lineRenderer;
+    LineRenderer lineRenderer; // 레이저 공격 이펙트
 
     LayerMask layermask;
 
@@ -31,7 +31,7 @@ public class SpearAttackScript : MonoBehaviour
         towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산    
         layermask = LayerMask.GetMask("Enemy");
 
-        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer = gameObject.GetComponent<LineRenderer>(); // 레이저 이펙트 설정
         lineRenderer.SetColors(Color.red, Color.red);
         lineRenderer.SetWidth(0.5f, 0.5f);
     }
@@ -46,8 +46,12 @@ public class SpearAttackScript : MonoBehaviour
         nowenemyCount = GameObject.Find("Controller").GetComponent<EnemySpawn>().nowEnemyCount; // 현재 적 숫자 받아오기        
         if (target == null)
         {
+            gameObject.GetComponent<LineRenderer>().enabled = false;
             Distance(); // 공격함수 실행
         }
+
+        
+
         if (attackTimer > attackDelay)
         {
             RayzerAttack();
@@ -70,6 +74,7 @@ public class SpearAttackScript : MonoBehaviour
             if (towerRange >= (enemySpawnList[i].transform.position - transform.position).magnitude)
             {
                 target = enemySpawnList[i];
+                gameObject.GetComponent<LineRenderer>().enabled = true;
                 break;
             }
         }

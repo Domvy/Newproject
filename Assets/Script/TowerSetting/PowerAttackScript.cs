@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerAttackScript : MonoBehaviour
 {
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
-    public float bulletSpeed = 30; // 발사체 속도
+    private float bulletSpeed = 30; // 발사체 속도
 
     private float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
@@ -14,8 +14,8 @@ public class PowerAttackScript : MonoBehaviour
 
     public int nowenemyCount = 0;// 총 생산횟수
 
-    public int NormalDamage = 20; // 공격력
-    public int ArmorPearce = 0; // 방어무시 공격력
+    private int NormalDamage = 20; // 공격력
+    private int ArmorPearce = 0; // 방어무시 공격력
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class PowerAttackScript : MonoBehaviour
     public void OnTriggerEnter(Collider other) // 충돌시 데미지 부여
     {
         Destroy(gameObject);
-        Collider[] Splash = Physics.OverlapSphere(transform.position, 5.0f); // 범위 지정
+        Collider[] Splash = Physics.OverlapSphere(transform.position, 10.0f); // 범위 지정
         foreach(Collider hit in Splash)
         {
             if(hit.gameObject.tag == "Enemy")

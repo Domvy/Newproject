@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BigEnemy : MonoBehaviour
 {
+    public float FullHP = 100;
     public int HP = 100;
     public int Armor = 10;
+    public Canvas canvasObj; // hp바 표시
 
     private void Start()
     {
@@ -18,6 +21,9 @@ public class BigEnemy : MonoBehaviour
         {
             Die();
         }
+
+        canvasObj.transform.rotation = Quaternion.Euler(0, 0, -1); // hp바 회전값 고정
+        canvasObj.GetComponentInChildren<Slider>().value = HP / FullHP;
     }
 
     void Die() // 사망시 EnemySpawn 스크립트 함수 호출

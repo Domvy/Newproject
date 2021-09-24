@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class BasicSetting : MonoBehaviour
 {
+    // 싱글톤
     // 현재 클래스(GameManager)를 선언
     public static BasicSetting instance;
-    public int PlayerMoney;
+    public int PlayerMoney; // 플레이어 돈
+    public int playerLife; // 플레이어 목숨
+    public float timer = 0.0f; // 플레이 시간 기록
+    public float playerdietime;
+    public Text money;
 
     // GameObject의 생명 주기 중 Awake는 생성 시 단 한번만 작동한다.
     // GameManager 클래스를 포함한 GameObject를 단 하나만 존재하도록 처리
@@ -29,18 +34,15 @@ public class BasicSetting : MonoBehaviour
 
     }
 
-    public float timer = 0.0f; // 플레이 시간 기록
-    public int playerLife;
-    public float playerdietime;
-    public Text money;
+
 
     private void Start()
     {
         PlayerMoney = 100;
+        playerLife = 3;
     }
     private void Update()
-    {
-        playerLife = GameObject.Find("LifeTower").GetComponent<PlayerLife>().playerLife;        
+    {       
         timer += Time.deltaTime;
         if (playerLife == 0) // 게임종료 시간 출력
         {            
