@@ -49,7 +49,8 @@ public class MoveKey : MonoBehaviour
 
     private void Zoom()
     {
-        distance = Input.GetAxis("Mouse ScrollWheel") * -1 * cameraZoomSpeed;        
+        float axis = Input.GetAxis("Mouse ScrollWheel");
+        distance = axis * -1 * cameraZoomSpeed;
         if (distance != 0)
         {
             mainCamera.fieldOfView += distance;

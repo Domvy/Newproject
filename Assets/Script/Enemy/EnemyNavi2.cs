@@ -8,18 +8,21 @@ public class EnemyNavi2 : MonoBehaviour
     public float enemyType = 0; // 적 유닛 타입
     Transform[] WayPoint; // 웨이포인트 배열
     public int checkpoint = 1; // 웨이포인트 첫 목표
+    Animator animator;
 
 
     void Start()
     {        
         WayPoint = GameObject.Find("WayPoint").GetComponentsInChildren<Transform>();
         transform.position = WayPoint[checkpoint].transform.position;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         enemySpeed = 10 * enemyType;
         EnemyMove();
+        
     }
     // 적 이동 함수
     void EnemyMove()

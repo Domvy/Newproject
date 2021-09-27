@@ -14,7 +14,6 @@ public class EnemySpawn : MonoBehaviour
     public Transform spawnPoint; // 생산 위치
     public List<GameObject> enemyList; // 생산된 적 리스트
     private GameObject clone = null; // 생산된 적 값 보관
-    public int nowEnemyCount = 0; // 현재 생산되어 있는 적 숫자
     private int totalSpawn = 0;
 
     public int roundCount; // 현재 라운드 숫자
@@ -36,7 +35,7 @@ public class EnemySpawn : MonoBehaviour
         {
             StopCoroutine(SpawnEnemy());
         }        
-        if(enemyCount == 0 && nowEnemyCount == 0)
+        if(enemyCount == 0 && enemyList.Count == 0)
         {
             GameObject.Find("Controller").GetComponent<GameStartScene>().RoundComplete = 1;
         }
@@ -66,7 +65,6 @@ public class EnemySpawn : MonoBehaviour
                 clone = Instantiate(Enemy, spawnPoint.position, spawnPoint.rotation); // 적 생성 
             }
             enemyList.Add(clone); // 생성된 값 배열추가
-            nowEnemyCount++; //생산되어있는 적 숫자 증가
             totalSpawn++;
             yield return new WaitForSeconds(spawnCount);
             enemyCount--; // 총 생성 카운트 감소
@@ -77,7 +75,6 @@ public class EnemySpawn : MonoBehaviour
     public void Die(GameObject enemy) // 적 사망시 호출되는 함수
     {
         enemyList.Remove(enemy); // 리스트 삭제
-        Destroy(enemy.gameObject); // 오브젝트 삭제
-        nowEnemyCount--; // 생산되어있는 적 숫자 감소        
+        Destroy(enemy.gameObject); // 오브젝트 삭제     
     }
 }

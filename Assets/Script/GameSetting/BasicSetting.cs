@@ -12,7 +12,7 @@ public class BasicSetting : MonoBehaviour
     public int playerLife; // 플레이어 목숨
     public float timer = 0.0f; // 플레이 시간 기록
     public float playerdietime;
-    public Text money;
+
 
     // GameObject의 생명 주기 중 Awake는 생성 시 단 한번만 작동한다.
     // GameManager 클래스를 포함한 GameObject를 단 하나만 존재하도록 처리
@@ -49,7 +49,5 @@ public class BasicSetting : MonoBehaviour
             playerdietime = timer;
             GameObject.Find("PlayTime").GetComponent<Text>().text = "Playtime : " + playerdietime;
         }
-
-        money.text = "Money : " + PlayerMoney;
     }
 }

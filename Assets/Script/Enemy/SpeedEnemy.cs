@@ -12,7 +12,7 @@ public class SpeedEnemy : MonoBehaviour
 
     private void Start()
     {
-        gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "SpeedEnemy"); // EnemyNavi 스크립트에 몬스터 타입 전송        
+        gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Speed"); // EnemyNavi 스크립트에 몬스터 타입 전송        
     }
 
     void Update()

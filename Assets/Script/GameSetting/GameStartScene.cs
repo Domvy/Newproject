@@ -10,13 +10,14 @@ public class GameStartScene : MonoBehaviour
     public GameObject gameRound; // 패널 오브젝트
     public int RoundComplete = 0;
     public int roundCount = 1; // 라운드 숫자
-
+    public Text money;
 
     public void Restart() // 게임 재시작
     {
         BasicSetting.instance.playerLife = 3; // 플레이어 목숨 초기화
         BasicSetting.instance.PlayerMoney = 100; // 플레이어 돈 초기화
         BasicSetting.instance.timer = 0.0f;
+        BasicSetting.instance.playerdietime = 0.0f;
         SceneManager.LoadScene(0);
     }
     public void StartGame() // 게임시작
@@ -35,6 +36,8 @@ public class GameStartScene : MonoBehaviour
         {
             gameRound.SetActive(true);
         }
+
+        money.text = "Money : " + BasicSetting.instance.PlayerMoney;
     }
 
     public void StartNextRound()

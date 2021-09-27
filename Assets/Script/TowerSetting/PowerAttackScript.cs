@@ -12,7 +12,6 @@ public class PowerAttackScript : MonoBehaviour
     private GameObject target; //공격 타겟
     private Transform targetposition;
 
-    public int nowenemyCount = 0;// 총 생산횟수
 
     private int NormalDamage = 20; // 공격력
     private int ArmorPearce = 0; // 방어무시 공격력
@@ -27,8 +26,7 @@ public class PowerAttackScript : MonoBehaviour
 
     void Update()
     {
-        enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
-        nowenemyCount = GameObject.Find("Controller").GetComponent<EnemySpawn>().nowEnemyCount; // 현재 적 숫자 받아오기        
+        enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴    
         if (target == null)
         {
             Distance(); // 공격함수 실행
@@ -39,7 +37,7 @@ public class PowerAttackScript : MonoBehaviour
 
     void Distance() //사거리 내의 오브젝트를 찾고 타겟설정
     {
-        for (int i = 0; i < nowenemyCount; i++)
+        for (int i = 0; i < enemySpawnList.Count; i++)
         {
             if (towerRange >= (enemySpawnList[i].transform.position - transform.position).magnitude)
             {
