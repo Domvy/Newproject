@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    public GameObject lifeUI;
+    public GameObject GameOverUI;
+    public GameObject lifeObj;
 
     private void Start()
     {
@@ -14,10 +15,10 @@ public class PlayerLife : MonoBehaviour
 
     void Update()
     {
-        GameObject.Find("Life").GetComponent<Text>().text = "Life : " + BasicSetting.instance.playerLife; // UI¿¡ ¸ñ¼ûÇ¥½Ã
         if (BasicSetting.instance.playerLife == 0)
         {
-            lifeUI.SetActive(true);  
+            GameOverUI.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 
@@ -26,5 +27,7 @@ public class PlayerLife : MonoBehaviour
     {
         other.gameObject.SendMessage("Die");
         BasicSetting.instance.playerLife--;
+        lifeObj = GameObject.Find("LifeObj");
+        lifeObj.transform.GetChild(BasicSetting.instance.playerLife).gameObject.SetActive(false);
     }
 }

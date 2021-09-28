@@ -9,10 +9,15 @@ public class SpeedEnemy : MonoBehaviour
     public int HP = 20;
     public int Armor = 0;
     public Canvas canvasObj; // hp바 표시
+    public int Difficulty = 1;
 
     private void Start()
     {
-        gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Speed"); // EnemyNavi 스크립트에 몬스터 타입 전송        
+        gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Speed"); // EnemyNavi 스크립트에 몬스터 타입 전송 
+        Difficulty = GameObject.Find("Controller").GetComponent<GameStartScene>().Difficulty;
+        FullHP = FullHP * Difficulty;
+        HP = HP * Difficulty;
+        Armor = Armor * Difficulty;
     }
 
     void Update()
@@ -36,7 +41,8 @@ public class SpeedEnemy : MonoBehaviour
     {
         if (Damage - Armor < 0)
         {
-            Armor = Damage;
+            Damage = 0;
+            Armor = 0;
         }
         HP -= (Damage - Armor) + ArmorPearce;
     }

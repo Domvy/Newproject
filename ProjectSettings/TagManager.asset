@@ -13,6 +13,7 @@ TagManager:
   - BigEnemy
   - SpeedEnemy
   - Ground
+  - WayPoint
   layers:
   - Default
   - TransparentFX

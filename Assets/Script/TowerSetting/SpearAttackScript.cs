@@ -15,7 +15,7 @@ public class SpearAttackScript : MonoBehaviour
     private int ArmorPearce = 1; // 방어무시 공격력
 
     private float timer = 0.0f;
-    private float waitingTime = 5;
+    private float waitingTime = 4.9f;
     private float attackTimer = 0.0f;
     private float attackDelay = 0.1f;
 
@@ -42,14 +42,19 @@ public class SpearAttackScript : MonoBehaviour
         timer += Time.deltaTime;
         attackTimer += Time.deltaTime;
 
-        enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴       
+        enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴 
+
+
         if (target == null)
         {
             gameObject.GetComponent<LineRenderer>().enabled = false;
             Distance(); // 공격함수 실행
         }
 
-        
+        else if ((target.transform.position - transform.position).magnitude > towerRange)
+        {
+            target = null;
+        }
 
         if (attackTimer > attackDelay)
         {

@@ -14,10 +14,10 @@ public class EnemySpawn : MonoBehaviour
     public Transform spawnPoint; // 생산 위치
     public List<GameObject> enemyList; // 생산된 적 리스트
     private GameObject clone = null; // 생산된 적 값 보관
-    private int totalSpawn = 0;
+    private int totalSpawn = 0; //지금까지 생성된 숫자
 
     public int roundCount; // 현재 라운드 숫자
-
+    public int killCount; // 죽은 적 숫자
 
     void Start()
     {
@@ -75,6 +75,7 @@ public class EnemySpawn : MonoBehaviour
     public void Die(GameObject enemy) // 적 사망시 호출되는 함수
     {
         enemyList.Remove(enemy); // 리스트 삭제
-        Destroy(enemy.gameObject); // 오브젝트 삭제     
+        Destroy(enemy.gameObject); // 오브젝트 삭제
+        killCount++;
     }
 }

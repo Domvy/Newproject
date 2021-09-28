@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class NormalEnemy : MonoBehaviour
 {
-    public float FullHP = 10;
-    public float HP = 10;
-    public int Armor = 1;
+    public float FullHP = 10; // 최대체력
+    public float HP = 10; // 현재체력
+    public int Armor = 1; // 방어력
     public Canvas canvasObj; // hp바 표시
+    public int Difficulty = 1;
 
     private void Start()
     {
         gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Normal"); // EnemyNavi 스크립트에 몬스터 타입 전송 
+        Difficulty = GameObject.Find("Controller").GetComponent<GameStartScene>().Difficulty;
+        FullHP = FullHP * Difficulty;
+        HP = HP * Difficulty;
+        Armor = Armor * Difficulty;
     }
 
     void Update()
     {        
         if (HP <= 0)
         {
-            Die();
+            Die();            
         }
 
         canvasObj.transform.rotation = Quaternion.Euler(0, 0, -1); // hp바 회전값 고정
@@ -29,6 +34,7 @@ public class NormalEnemy : MonoBehaviour
     void Die() // 사망시 EnemySpawn 스크립트 함수 호출
     {
         BasicSetting.instance.PlayerMoney += 1;
+        gameObject.GetComponent<EnemyNavi2>().enabled = false;     
         GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject);
     }
 
@@ -36,7 +42,8 @@ public class NormalEnemy : MonoBehaviour
     {
         if (Damage - Armor < 0)
         {
-            Armor = Damage;
+            Damage = 0;
+            Armor = 0;
         }
         HP -= (Damage - Armor) + ArmorPearce;
     }    

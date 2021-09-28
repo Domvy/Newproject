@@ -13,7 +13,7 @@ public class EnemyNavi2 : MonoBehaviour
 
     void Start()
     {        
-        WayPoint = GameObject.Find("WayPoint").GetComponentsInChildren<Transform>();
+        WayPoint = GameObject.FindWithTag("WayPoint").GetComponentsInChildren<Transform>();
         transform.position = WayPoint[checkpoint].transform.position;
         animator = GetComponent<Animator>();
     }
@@ -21,8 +21,7 @@ public class EnemyNavi2 : MonoBehaviour
     void Update()
     {
         enemySpeed = 10 * enemyType;
-        EnemyMove();
-        
+        EnemyMove();        
     }
     // 적 이동 함수
     void EnemyMove()

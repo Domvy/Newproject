@@ -9,10 +9,15 @@ public class BigEnemy : MonoBehaviour
     public int HP = 100;
     public int Armor = 10;
     public Canvas canvasObj; // hp바 표시
+    public int Difficulty = 1;
 
     private void Start()
     {
         gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Big"); // EnemyNavi 스크립트에 몬스터 타입 전송
+        Difficulty = GameObject.Find("Controller").GetComponent<GameStartScene>().Difficulty;
+        FullHP = FullHP * Difficulty;
+        HP = HP * Difficulty;
+        Armor = Armor * Difficulty;
     }
 
     void Update()
@@ -36,16 +41,9 @@ public class BigEnemy : MonoBehaviour
     {
         if(Damage - Armor < 0)
         {
-            Armor = Damage;
+            Damage = 0;
+            Armor = 0;
         }
         HP -= (Damage - Armor) + ArmorPearce;
-    }
-    public void Hit(int Damage)
-    {
-        if (Damage - Armor < 0)
-        {
-            Armor = Damage;
-        }
-        HP -= (Damage - Armor);
     }
 }
