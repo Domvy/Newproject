@@ -57,20 +57,21 @@ public class BossSlime : MonoBehaviour
 
     public IEnumerator Heal()
     {
+        ani.SetBool("Die", true);
         Collider[] Splash = Physics.OverlapSphere(transform.position, 5.0f); // 범위 지정
         foreach (Collider hit in Splash)
         {
             if (hit.gameObject.tag == "Enemy")
             {
-                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 10;
+                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 100;
             }
             if (hit.gameObject.tag == "SpeedEnemy")
             {
-                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 10;
+                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 100;
             }
             if (hit.gameObject.tag == "BigEnemy")
             {
-                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 10;
+                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 100;
             }
         }
         yield return new WaitForSeconds(10.0f);
