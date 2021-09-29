@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BigEnemy : MonoBehaviour
+public class BossSlime : MonoBehaviour
 {
-    public float FullHP = 100;
-    public float HP = 100;
-    public int Armor = 10;
+    public float FullHP = 1000; // 최대체력
+    public float HP = 1000; // 현재체력
+    public int Armor = 10; // 방어력
     public Canvas canvasObj; // hp바 표시
     public int Difficulty = 1;
+    Animator ani;
 
     private void Start()
     {
-        gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Big"); // EnemyNavi 스크립트에 몬스터 타입 전송
+        gameObject.GetComponent<EnemyNavi2>().SendMessage("SpeedSetting", "Boss"); // EnemyNavi 스크립트에 몬스터 타입 전송 
         Difficulty = GameObject.Find("Controller").GetComponent<GameStartScene>().Difficulty;
         FullHP = FullHP * Difficulty;
         HP = HP * Difficulty;
         Armor = Armor * Difficulty;
+        StartCoroutine(Heal());
     }
 
     void Update()
@@ -34,22 +36,27 @@ public class BigEnemy : MonoBehaviour
 
     void Die() // 사망시 EnemySpawn 스크립트 함수 호출
     {
+        StopCoroutine(Heal());
         gameObject.GetComponent<EnemyNavi2>().enabled = false;
         this.gameObject.layer = 0;
         this.gameObject.tag = "Untagged";
-        Animator ani;
         ani = GetComponent<Animator>();
         ani.SetBool("Die", true);
-        GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject,10);        
+        GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject, 100);
     }
 
     public void Hit(int Damage, int ArmorPearce)
     {
-        if(Damage - Armor < 0)
+        if (Damage - Armor < 0)
         {
             Damage = 0;
             Armor = 0;
         }
         HP -= (Damage - Armor) + ArmorPearce;
+    }
+
+    public IEnumerator Heal()
+    {
+        yield return new WaitForSeconds(10.0f);
     }
 }

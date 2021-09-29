@@ -52,5 +52,9 @@ public class EnemyNavi2 : MonoBehaviour
         {
             enemyType = 2;
         }
+        if(enemytype == "Boss")
+        {
+            enemyType = 0.1f;
+        }
     }
 }

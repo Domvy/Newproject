@@ -27,7 +27,7 @@ public class PowerAttackScript : MonoBehaviour
     void Update()
     {
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴    
-        if (target == null)
+        if (target == null || target.tag != "Enemy")
         {
             Distance(); // 공격함수 실행
         }

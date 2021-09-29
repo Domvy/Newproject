@@ -26,13 +26,13 @@ public class NormalAttackScript : MonoBehaviour
     void Update()
     {
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴     
-        if (target == null)
+        if (target == null || target.tag != "Enemy")
         {
             Distance(); // 공격함수 실행
         }
-        //공격
+        //공격        
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, bulletSpeed * Time.deltaTime);
-        Destroy(gameObject, 1.0f); //n초가 지나면 자동으로 오브젝트 삭제
+        Destroy(gameObject,1f); //n초가 지나면 자동으로 오브젝트 삭제
     }
 
     void Distance() //사거리 내의 오브젝트를 찾고 타겟설정

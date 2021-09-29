@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SpeedEnemy : MonoBehaviour
 {
     public float FullHP = 20;
-    public int HP = 20;
+    public float HP = 20;
     public int Armor = 0;
     public Canvas canvasObj; // hp바 표시
     public int Difficulty = 1;
@@ -22,9 +22,10 @@ public class SpeedEnemy : MonoBehaviour
 
     void Update()
     {
-        if (HP <= 0)
+        if (HP < 0.1f)
         {
             Die();
+            HP = 0.1f;
         }
 
         canvasObj.transform.rotation = Quaternion.Euler(0, 0, -1); // hp바 회전값 고정
@@ -33,8 +34,13 @@ public class SpeedEnemy : MonoBehaviour
 
     void Die() // 사망시 EnemySpawn 스크립트 함수 호출
     {
-        BasicSetting.instance.PlayerMoney += 5;
-        GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject);
+        gameObject.GetComponent<EnemyNavi2>().enabled = false;
+        this.gameObject.layer = 0;
+        this.gameObject.tag = "Untagged";
+        Animator ani;
+        ani = GetComponent<Animator>();
+        ani.SetBool("Die", true);
+        GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject,5);
     }
 
     public void Hit(int Damage, int ArmorPearce)

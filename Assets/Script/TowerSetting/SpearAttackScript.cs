@@ -51,7 +51,7 @@ public class SpearAttackScript : MonoBehaviour
             Distance(); // 공격함수 실행
         }
 
-        else if ((target.transform.position - transform.position).magnitude > towerRange)
+        else if ((target.transform.position - transform.position).magnitude > towerRange || target.tag != "Enemy")
         {
             target = null;
         }

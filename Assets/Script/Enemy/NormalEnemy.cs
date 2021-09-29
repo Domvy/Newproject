@@ -22,9 +22,10 @@ public class NormalEnemy : MonoBehaviour
 
     void Update()
     {        
-        if (HP <= 0)
+        if (HP < 0.1f)
         {
-            Die();            
+            Die();
+            HP = 0.1f;
         }
 
         canvasObj.transform.rotation = Quaternion.Euler(0, 0, -1); // hp바 회전값 고정
@@ -33,9 +34,13 @@ public class NormalEnemy : MonoBehaviour
 
     void Die() // 사망시 EnemySpawn 스크립트 함수 호출
     {
-        BasicSetting.instance.PlayerMoney += 1;
-        gameObject.GetComponent<EnemyNavi2>().enabled = false;     
-        GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject);
+        gameObject.GetComponent<EnemyNavi2>().enabled = false;
+        this.gameObject.layer = 0;
+        this.gameObject.tag = "Untagged";
+        Animator ani;
+        ani = GetComponent<Animator>();
+        ani.SetBool("Die", true);
+        GameObject.Find("Controller").GetComponent<EnemySpawn>().Die(gameObject,1);
     }
 
     public void Hit(int Damage, int ArmorPearce)

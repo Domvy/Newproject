@@ -72,10 +72,11 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    public void Die(GameObject enemy) // 적 사망시 호출되는 함수
+    public void Die(GameObject enemy , int n) // 적 사망시 호출되는 함수
     {
         enemyList.Remove(enemy); // 리스트 삭제
-        Destroy(enemy.gameObject); // 오브젝트 삭제
+        Destroy(enemy.gameObject,1f); // 오브젝트 삭제
+        BasicSetting.instance.PlayerMoney += n;
         killCount++;
     }
 }
