@@ -57,6 +57,22 @@ public class BossSlime : MonoBehaviour
 
     public IEnumerator Heal()
     {
+        Collider[] Splash = Physics.OverlapSphere(transform.position, 5.0f); // 범위 지정
+        foreach (Collider hit in Splash)
+        {
+            if (hit.gameObject.tag == "Enemy")
+            {
+                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 10;
+            }
+            if (hit.gameObject.tag == "SpeedEnemy")
+            {
+                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 10;
+            }
+            if (hit.gameObject.tag == "BigEnemy")
+            {
+                hit.gameObject.GetComponent<NormalEnemy>().HP += FullHP * 1 / 10;
+            }
+        }
         yield return new WaitForSeconds(10.0f);
     }
 }
