@@ -18,7 +18,7 @@ public class EnemySpawn : MonoBehaviour
     private int totalSpawn = 0; //지금까지 생성된 숫자
 
     public int roundCount; // 현재 라운드 숫자
-    public int SlimeBossRound = 5;
+    private int SlimeBossRound = 5;
     public int killCount; // 죽은 적 숫자
 
     public int goldUpgradeCount = 1;
