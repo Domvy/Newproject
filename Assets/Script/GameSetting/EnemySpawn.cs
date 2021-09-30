@@ -8,6 +8,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject Enemy; // 생산할 적 오브젝트
     public GameObject BigEnemy;
     public GameObject SpeedEnemy;
+    public GameObject SlimeBoss;
 
     public int enemyCount = 10; // 총 생산 숫자
     public float spawnCount = 5f; // 생산 중간 딜레이
@@ -59,6 +60,11 @@ public class EnemySpawn : MonoBehaviour
             {
                 clone = Instantiate(BigEnemy, spawnPoint.position, spawnPoint.rotation);
                 Debug.Log("BigEnemySpawn!");
+            }
+            else if (roundCount == 5 && enemyCount == 50)
+            {
+                clone = Instantiate(SlimeBoss, spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("BossEnemySpawn!");
             }
             else
             {

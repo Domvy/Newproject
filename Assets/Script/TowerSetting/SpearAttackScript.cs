@@ -96,6 +96,8 @@ public class SpearAttackScript : MonoBehaviour
                 hit.collider.gameObject.GetComponent<SpeedEnemy>().Hit(NormalDamage, ArmorPearce);
             else if (hit.collider.gameObject.tag == "BigEnemy")
                 hit.collider.gameObject.GetComponent<BigEnemy>().Hit(NormalDamage, ArmorPearce);
+            else if (hit.collider.tag == "BossEnemy")           
+                hit.collider.GetComponent<BossSlime>().Hit(NormalDamage, ArmorPearce);            
         }
         Debug.DrawRay(transform.position, dir, Color.red);
     }

@@ -45,11 +45,15 @@ public class NormalEnemy : MonoBehaviour
 
     public void Hit(int Damage, int ArmorPearce)
     {
-        if (Damage - Armor < 0)
+        if (Damage <= Armor && Damage != 0)
         {
-            Damage = 0;
-            Armor = 0;
+            HP -= 1 + ArmorPearce;
         }
+        else if (Damage == 0)
+        {
+            HP -= ArmorPearce;
+        }
+        else
         HP -= (Damage - Armor) + ArmorPearce;
     }    
 }

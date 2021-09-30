@@ -65,6 +65,10 @@ public class PowerAttackScript : MonoBehaviour
             {
                 hit.gameObject.GetComponent<BigEnemy>().Hit(NormalDamage, ArmorPearce);
             }
+            else if (hit.gameObject.tag == "BossEnemy")
+            {
+                hit.gameObject.GetComponent<BossSlime>().Hit(NormalDamage, ArmorPearce);
+            }
         }
     }
 }

@@ -56,5 +56,7 @@ public class NormalAttackScript : MonoBehaviour
             other.gameObject.GetComponent<SpeedEnemy>().Hit(NormalDamage, ArmorPearce);
         else if (other.gameObject.tag == "BigEnemy")
             other.gameObject.GetComponent<BigEnemy>().Hit(NormalDamage, ArmorPearce);
+        else if (other.gameObject.tag == "BossEnemy")        
+            other.gameObject.GetComponent<BossSlime>().Hit(NormalDamage, ArmorPearce);        
     }
 }
