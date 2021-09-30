@@ -13,8 +13,6 @@ public class UpgradeScript : MonoBehaviour
     public GameObject UpgradeButton2;
     public GameObject UpgradeButton3;
 
-    
-
     private void Start()
     {
         powerUpCount = 0;
@@ -37,9 +35,9 @@ public class UpgradeScript : MonoBehaviour
 
     public void GoldUp()
     {
-        if (BasicSetting.instance.PlayerMoney >= 300)
+        if (BasicSetting.instance.PlayerMoney >= 100)
         {
-            BasicSetting.instance.PlayerMoney -= 300;
+            BasicSetting.instance.PlayerMoney -= 100;
             GameObject.Find("Controller").GetComponent<EnemySpawn>().goldUpgradeCount++;
             UpgradeButton2.GetComponent<Button>().interactable = false;
         }
@@ -51,9 +49,9 @@ public class UpgradeScript : MonoBehaviour
 
     public void PowerUp()
     {
-        if (BasicSetting.instance.PlayerMoney >= 500 && powerUpCount < 3)
+        if (BasicSetting.instance.PlayerMoney >= 150 && powerUpCount < 3)
         {
-            BasicSetting.instance.PlayerMoney -= 500;
+            BasicSetting.instance.PlayerMoney -= 150;
             powerUpCount++;
             if (powerUpCount == 3)
             {

@@ -3144,16 +3144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796f5b4d8c10ab94c8ee598ada08aae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpCount: 0
+  RangeUpCount: 0
   notice: {fileID: 1344657559}
   UpgradeButton: {fileID: 915457436}
   UpgradeButton2: {fileID: 401015969}
   UpgradeButton3: {fileID: 833545697}
-  NormalAttackObj: {fileID: 1362159713141292852, guid: 370a67a75bc92264ca463ae6a0485e96, type: 3}
-  PowerAttackObj: {fileID: 817361532173967032, guid: 6389741c90b1da040867875f98546933, type: 3}
-  SpearAttackObj: {fileID: 6457927845631336357, guid: 9f5289642fd5e294ba88911d28ade5a3, type: 3}
-  NormalTowerObj: {fileID: 1326093064322132, guid: a425124410f363a43adb6788601cc3e0, type: 3}
-  PowerTowerObj: {fileID: 129420, guid: d3ef549050e9b0542b4f3c3dd47a1085, type: 3}
-  SpearTowerObj: {fileID: 187918, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
 --- !u!1001 &587174861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3288,7 +3284,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Power Up!
 
-    gold : 500'
+    gold : 150'
 --- !u!222 &593286824
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7378,7 +7374,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'More Gold!
 
-    gold : 300'
+    gold : 100'
 --- !u!222 &1369118251
 CanvasRenderer:
   m_ObjectHideFlags: 0

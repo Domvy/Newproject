@@ -8,7 +8,7 @@ public class BasicSetting : MonoBehaviour
     // 싱글톤
     // 현재 클래스(GameManager)를 선언
     public static BasicSetting instance;
-    public int PlayerMoney = 200; // 플레이어 돈
+    public int PlayerMoney = 100; // 플레이어 돈
     public int playerLife = 3; // 플레이어 목숨
     public float timer = 0.0f; // 플레이 시간 기록
     public int timerSet = 0;
@@ -38,7 +38,7 @@ public class BasicSetting : MonoBehaviour
 
     private void Start()
     {
-        PlayerMoney = 200;
+        PlayerMoney = 100;
         playerLife = 3;
     }
     private void Update()
