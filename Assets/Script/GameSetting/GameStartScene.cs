@@ -58,7 +58,6 @@ public class GameStartScene : MonoBehaviour
         }
 
         money.text = "Money : " + BasicSetting.instance.PlayerMoney; // 플레이어 돈 텍스트 출력
-        killCountUI.text = "Kill : " + gameObject.GetComponent<EnemySpawn>().killCount;
 
         // 생성 전 카운트다운
         startCountDown.text = $"{(int)10 - (int)BasicSetting.instance.timer}";

@@ -8,6 +8,9 @@ public class UIButton : MonoBehaviour
     public GameObject PanelCloseButton;
     public GameObject PanelOpenButton;
 
+    public GameObject RightPanel;
+    public GameObject RightPanelCloseButton;
+    public GameObject RightPanelOpenButton;
 
     public void PanelClose()
     {
@@ -21,5 +24,19 @@ public class UIButton : MonoBehaviour
         DownPanel.SetActive(true);
         PanelOpenButton.SetActive(false);
         PanelCloseButton.SetActive(true);
+    }
+
+    public void RightPanelClose()
+    {
+        RightPanel.SetActive(false);
+        RightPanelCloseButton.SetActive(false);
+        RightPanelOpenButton.SetActive(true);
+    }
+
+    public void RightPanelOpen()
+    {
+        RightPanel.SetActive(true);
+        RightPanelOpenButton.SetActive(false);
+        RightPanelCloseButton.SetActive(true);
     }
 }

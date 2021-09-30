@@ -111,8 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnList: []
+  towerRange: 0
   towerRangeX: 20
-  nowenemyCount: 0
+  NormalDamage: 0
+  ArmorPearce: 1
 --- !u!120 &3764159780298405570
 LineRenderer:
   m_ObjectHideFlags: 0

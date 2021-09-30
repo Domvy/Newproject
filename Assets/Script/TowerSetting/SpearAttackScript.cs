@@ -6,13 +6,14 @@ public class SpearAttackScript : MonoBehaviour
 {
     public List<GameObject> enemySpawnList; // 생성된 적 배열값
 
-    private float towerRange; //타워 사거리
+    public float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
     private GameObject target; // 공격 타겟    
-    
 
-    private int NormalDamage = 0; // 공격력
-    private int ArmorPearce = 1; // 방어무시 공격력
+    public int NormalDamage = 0; // 공격력
+    public int ArmorPearce = 1; // 방어무시 공격력
+    public int powerUpCount = 0;
+    public int rangeUpCount = 0;
 
     private float timer = 0.0f;
     private float waitingTime = 4.9f;
@@ -27,18 +28,26 @@ public class SpearAttackScript : MonoBehaviour
     void Start()
     {
         target = null;
-        enemySpawnList = new List<GameObject>(); // 배열 선언  
-        towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산    
+        enemySpawnList = new List<GameObject>(); // 배열 선언          
         layermask = LayerMask.GetMask("Enemy");
+
+        powerUpCount = GameObject.Find("Controller").GetComponent<UpgradeScript>().powerUpCount;
+        rangeUpCount = GameObject.Find("Controller").GetComponent<UpgradeScript>().RangeUpCount;
+        towerRangeX = 20 + (10 * rangeUpCount);
+        NormalDamage = 0;
+        ArmorPearce = 1 + (1 * powerUpCount);
 
         lineRenderer = gameObject.GetComponent<LineRenderer>(); // 레이저 이펙트 설정
         lineRenderer.SetColors(Color.red, Color.red);
         lineRenderer.SetWidth(0.5f, 0.5f);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        towerRange = new Vector3(1, 1, 1).magnitude * towerRangeX; // 타워 사거리 계산        
+
         timer += Time.deltaTime;
         attackTimer += Time.deltaTime;
 

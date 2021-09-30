@@ -20,11 +20,14 @@ public class EnemySpawn : MonoBehaviour
     public int roundCount; // 현재 라운드 숫자
     public int killCount; // 죽은 적 숫자
 
+    public int goldUpgradeCount = 1;
+
     void Start()
     {
         roundCount = GameObject.Find("Controller").GetComponent<GameStartScene>().roundCount;
         enemyCount = enemyCount * roundCount;
         enemyList = new List<GameObject>();
+        goldUpgradeCount = 1;
         StartCoroutine(SpawnEnemy());
     }
 
@@ -82,7 +85,7 @@ public class EnemySpawn : MonoBehaviour
     {
         enemyList.Remove(enemy); // 리스트 삭제
         Destroy(enemy.gameObject,1f); // 오브젝트 삭제
-        BasicSetting.instance.PlayerMoney += n;
+        BasicSetting.instance.PlayerMoney += n*goldUpgradeCount;
         killCount++;
     }
 }

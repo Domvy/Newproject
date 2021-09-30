@@ -11,9 +11,10 @@ public class TowerAi : MonoBehaviour
 
     public GameObject normalAttack; // 일반공격   
 
-    private float towerRange; //타워 사거리
+    public float towerRange; //타워 사거리
     public int towerRangeX = 20; // 사거리 설정값(곱해주는 값)
     private float distance; // 타워와 적 사이의 거리 
+    public int rangeUpCount = 0;
 
     float timer; // 시간 타이머
     public float waitingtime; // 함수 재호출 대기시간(공격 딜레이)
@@ -29,6 +30,8 @@ public class TowerAi : MonoBehaviour
 
     private void Update()
     {
+        rangeUpCount = GameObject.Find("Controller").GetComponent<UpgradeScript>().RangeUpCount;
+        towerRangeX = 20 + (10 * rangeUpCount);
         timer += Time.deltaTime;
         enemySpawnList = GameObject.Find("Controller").GetComponent<EnemySpawn>().enemyList; // 적 생성 배열값 받아옴
         if(target == null)

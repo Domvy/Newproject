@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnList: []
+  towerRange: 0
   towerRangeX: 20
-  nowenemyCount: 0
+  NormalDamage: 10
+  ArmorPearce: 0
+  powerUpCount: 0
 --- !u!135 &1629108277526486438
 SphereCollider:
   m_ObjectHideFlags: 0

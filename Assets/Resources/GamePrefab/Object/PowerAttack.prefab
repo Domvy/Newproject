@@ -154,5 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnList: []
+  towerRange: 0
   towerRangeX: 20
-  nowenemyCount: 0
+  NormalDamage: 20
+  ArmorPearce: 0
+  SplashBoundary: 10
