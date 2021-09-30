@@ -18,6 +18,7 @@ public class EnemySpawn : MonoBehaviour
     private int totalSpawn = 0; //지금까지 생성된 숫자
 
     public int roundCount; // 현재 라운드 숫자
+    public int SlimeBossRound = 5;
     public int killCount; // 죽은 적 숫자
 
     public int goldUpgradeCount = 1;
@@ -64,10 +65,11 @@ public class EnemySpawn : MonoBehaviour
                 clone = Instantiate(BigEnemy, spawnPoint.position, spawnPoint.rotation);
                 Debug.Log("BigEnemySpawn!");
             }
-            else if (roundCount == 5 && enemyCount == 50)
+            else if (roundCount == SlimeBossRound)
             {
-                clone = Instantiate(SlimeBoss, spawnPoint.position, spawnPoint.rotation);
+                clone = Instantiate(SlimeBoss, spawnPoint.position, spawnPoint.rotation);                
                 Debug.Log("BossEnemySpawn!");
+                SlimeBossRound = 0;
             }
             else
             {
