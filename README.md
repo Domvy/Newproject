@@ -42,6 +42,10 @@
   }  
   ```
 * 적 생성
+  
+  ![bandicam 2024-04-11 02-55-40-189](https://github.com/Domvy/Tower-Defense/assets/90752171/f06d1f5f-0b15-453f-996a-1fa385a315de)
+
+  
   [EnemySpawn.cs](Assets/Script/GameSetting/EnemySpawn.cs)
   ```  
     public IEnumerator SpawnEnemy()
@@ -81,7 +85,10 @@
     }
   }  
   ```
-* 타워 인공지능  
+* 타워 인공지능
+  
+  ![bandicam 2024-04-11 02-57-40-996](https://github.com/Domvy/Tower-Defense/assets/90752171/c408420b-cbdb-4fcb-840b-9d7ddf98345c)
+  
   [TowerAi.cs](Assets/Script/TowerSetting/TowerAi.cs)  
   [AttackScript.cs](Assets/Script/TowerSetting/NormalAttackScript.cs)  
   ```
